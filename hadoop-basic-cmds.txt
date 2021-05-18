@@ -1,0 +1,54 @@
+hdoop@asus:~$ cd /home/hdoop/hadoop-3.2.1/sbin/
+hdoop@asus:~/hadoop-3.2.1/sbin$ ./start-all.sh
+WARNING: Attempting to start all Apache Hadoop daemons as hdoop in 10 seconds.
+WARNING: This is not a recommended production deployment configuration.
+WARNING: Use CTRL-C to abort.
+Starting namenodes on [localhost]
+Starting datanodes
+Starting secondary namenodes [asus]
+Starting resourcemanager
+Starting nodemanagers
+hdoop@asus:~/hadoop-3.2.1/sbin$ jps
+3473 Jps
+3121 NodeManager
+2659 SecondaryNameNode
+2949 ResourceManager
+2269 NameNode
+2431 DataNode
+hdoop@asus:~/hadoop-3.2.1/sbin$ hadoop fs -ls
+Found 1 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-04 03:38 bdlab015
+hdoop@asus:~/hadoop-3.2.1/sbin$ hadoop fs -mkdir bdlab015
+hdoop@asus:~/hadoop-3.2.1/sbin$ hadoop fs -ls
+Found 2 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-17 22:25 bdlab015
+drwxr-xr-x   - hdoop supergroup          0 2021-05-04 03:38 bdlab015
+hdoop@asus:~/hadoop-3.2.1/sbin$ hadoop fs -touchz bdlab015/test.txt
+hdoop@asus:~/hadoop-3.2.1/sbin$ hadoop fs -touchz bdlab015/test2.txt
+hdoop@asus:~/hadoop-3.2.1/sbin$ hadoop fs -ls bdlab015
+Found 2 items
+-rw-r--r--   1 hdoop supergroup          0 2021-05-17 22:26 bdlab015/test.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-17 22:26 bdlab015/test2.txt
+hdoop@asus:~/hadoop-3.2.1/sbin$ hadoop fs -mkdir 1NT18IS015
+hdoop@asus:~/hadoop-3.2.1/sbin$ hadoop fs -ls
+Found 3 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-17 22:28 1NT18IS015
+drwxr-xr-x   - hdoop supergroup          0 2021-05-17 22:26 bdlab015
+drwxr-xr-x   - hdoop supergroup          0 2021-05-04 03:38 bdlab015
+hdoop@asus:~/hadoop-3.2.1/sbin$ hadoop fs -cp 1NT18IS015 bdlab015/
+hdoop@asus:~/hadoop-3.2.1/sbin$ hadoop fs -ls bdlab015
+Found 3 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-17 22:29 bdlab015/1NT18IS015
+-rw-r--r--   1 hdoop supergroup          0 2021-05-17 22:26 bdlab015/test.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-17 22:26 bdlab015/test2.txt
+hdoop@asus:~/hadoop-3.2.1/sbin$ gedit bdlab015_1NT18IS015.txt
+hdoop@asus:~/hadoop-3.2.1/sbin$ hadoop fs -ls bdlab015/1NT18IS015/
+hdoop@asus:~/hadoop-3.2.1/sbin$ hadoop fs -ls bdlab015/
+Found 3 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-17 22:29 bdlab015/1NT18IS015
+-rw-r--r--   1 hdoop supergroup          0 2021-05-17 22:26 bdlab015/test.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-17 22:26 bdlab015/test2.txt
+hdoop@asus:~/hadoop-3.2.1/sbin$ hadoop fs -du bdlab015/
+0  0  bdlab015/1NT18IS015
+0  0  bdlab015/test.txt
+0  0  bdlab015/test2.txt
